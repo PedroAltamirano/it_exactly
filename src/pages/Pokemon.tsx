@@ -22,14 +22,14 @@ const Pokemon = () => {
           <h1>{UpperFirst(data?.name || "")}</h1>
         </div>
         <div>
-          <p>Altura: {data?.height}</p>
-          <p>Peso: {data?.weight}</p>
-          <p>Especie: {data?.species.name}</p>
-          <p>Experiencia: {data?.base_experience}</p>
+          <p>Height: {data?.height}</p>
+          <p>Weight: {data?.weight}</p>
+          <p>Specie: {data?.species.name}</p>
+          <p>Experience: {data?.base_experience}</p>
         </div>
       </div>
       <div>
-        <h4>Tipos</h4>
+        <h4>Types</h4>
         <div className="flex gap-4 flex-wrap">
           {data?.types.map((type, index) => (
             <li key={index}>{type.type.name}</li>
@@ -37,7 +37,7 @@ const Pokemon = () => {
         </div>
       </div>
       <div>
-        <h4>Estadisticas</h4>
+        <h4>Stats</h4>
         <div className="flex gap-4 flex-wrap">
           {data?.stats.map((stat, index) => (
             <li key={index}>
@@ -47,7 +47,7 @@ const Pokemon = () => {
         </div>
       </div>
       <div>
-        <h4>Abilidades</h4>
+        <h4>Abilities</h4>
         <div className="flex gap-4 flex-wrap">
           {data?.abilities.map((ability, index) => (
             <li key={index}>{ability.ability.name}</li>
@@ -55,7 +55,7 @@ const Pokemon = () => {
         </div>
       </div>
       <div>
-        <h4>Movimientos</h4>
+        <h4>Moves</h4>
         <div className="flex gap-4 flex-wrap">
           {data?.moves.map((move, index) => (
             <li key={index}>{move.move.name}</li>

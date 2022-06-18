@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { getPokemons, getPokemonByName } from "../services/pokemonServices";
+import shallow from "zustand/shallow";
+
 import { UpperFirst } from "../utils/strings";
+
+import { getPokemons, getPokemonByName } from "../services/pokemonServices";
+import { useStore } from "../store/pagination";
 
 interface IItemProps {
   name: string;
@@ -29,8 +33,13 @@ const Item: React.FC<IItemProps> = ({ name }) => {
 };
 
 const Pokemons = () => {
-  const { isLoading, data } = useQuery("pokemons", getPokemons);
-  console.log(data);
+  const { limit, offset } = useStore(
+    (state) => ({ limit: state.limit, offset: state.offset }),
+    shallow
+  );
+  const { isLoading, data } = useQuery(["pokemons", limit, offset], () =>
+    getPokemons(limit, offset)
+  );
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -38,8 +47,8 @@ const Pokemons = () => {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
-      {data?.results?.map((pokemon: any) => (
-        <Item name={pokemon.name} />
+      {data?.results?.map((pokemon, index) => (
+        <Item key={index} name={pokemon.name} />
       ))}
     </div>
   );
