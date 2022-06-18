@@ -7,7 +7,7 @@ import { UpperFirst } from "../utils/strings";
 const Pokemon = () => {
   const { name } = useParams();
   const { isLoading, data } = useQuery(["pokemon", name], () =>
-    getPokemonByName(name)
+    getPokemonByName(name || "")
   );
 
   if (isLoading) {
@@ -19,7 +19,7 @@ const Pokemon = () => {
       <div className="flex">
         <div className="w-1/3 flex flex-col justify-center items-center">
           <img src={data?.sprites.front_default} alt={data?.name} />
-          <h1>{UpperFirst(data?.name)}</h1>
+          <h1>{UpperFirst(data?.name || "")}</h1>
         </div>
         <div>
           <p>Altura: {data?.height}</p>

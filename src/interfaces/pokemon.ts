@@ -69,6 +69,7 @@ interface ISprite {
 interface IStat {
   base_stat: number;
   effort: number;
+  stat: IForms;
 }
 
 interface IType {
